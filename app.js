@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
 var index = require('./routes/index');
-var users = require('./routes/users');
-var auth = require('/routes/auth');
-
+var user = require('./routes/user');
+var auth = require('./routes/auth');
+var methodOverride = require('method-override');
 var app = express();
 
 require('dotenv').config();
@@ -24,13 +24,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(session({
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(require('node-sass-middleware')({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public'),
@@ -40,7 +40,7 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/user', user);
 app.use('/auth', auth)
 
 // catch 404 and forward to error handler

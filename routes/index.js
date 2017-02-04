@@ -7,15 +7,21 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/trains', function(req, res, next) {
-  res.render('trainLines', {
-    title: 'Select A Train'
+  models.Train.findAll({}).then((trains) => {
+    res.render('trainLines', {
+    title: 'Select A Train',
+    trains:trains
   });
+  })
 });
 
 router.get('/trains/:id', function(req, res, next) {
-  res.render('trainInfo', {
-    title: 'Train View'
+  models.Train.findById(req.params.id).then((trains) => {
+    res.render('trainInfo', {
+    title: 'Subwaze | Line',
+    trains: trains
   });
+  })
 });
 
 module.exports = router;
