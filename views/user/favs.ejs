@@ -6,11 +6,9 @@
 </head>
 <body>
 <% include ../partials/header.ejs %>
-<%= user.firstName %>
-<%= user.lastName %>
-<%= user.id %>
-<%= user.email %>
-<p> here is a 2 train </p>
-
+<h2> Hello, <%= user.firstName %> </h2>
+<% favs.forEach((fav) => { %>
+    <div> <%= fav.line %> </div>
+<% }) %>
 </body>
 </html>
