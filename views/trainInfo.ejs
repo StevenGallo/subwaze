@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+    <% include partials/head.ejs %>
   <body>
     <% include partials/header.ejs %>
     <center>
-        <div style="font-size: 100px; border-radius: 100%; "> 2
-
+        <div class="train_line" style="
+            width:200px;
+            height:200px;
+            border: 5px solid black;
+            border-radius: 100%;
+            line-height:200px;
+            font-size: 150px;
+            background-color: red;
+            color:white;"> 2
+        </div>
+        <div class="train_status" style="width:200px; font-size:30px; color:green;">
+            On Time
+        </div>
+        <div class="comment_list" style="width: 700px; border:5px solid black">
+            <div class="comment">
+                <span class="time">7:50 am</span>
+                <p>
+                    this is the comment posted by kev_run @ 7:50
+                </p>
+                <div class="user_name">kev_run11</div> <br />
+                <span class="likes">Likes</span>
+                <span class="dislike">Dislikes</span>
+            </div>
         </div>
     </center>
 
