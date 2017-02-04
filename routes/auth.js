@@ -13,7 +13,6 @@ router.post('/register', (req, res, next) => {
         .then((user) => {
             req.login(user, (err) => {
                 if (err) return next(err);
-
                 res.redirect('/user/');
             });
         })
@@ -25,7 +24,7 @@ router.get('/login', authHelpers.loginRedirect, (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/user',
+    successRedirect: '/user/',
     failureRedirect: '/auth/login',
     failureFlash: true
 }));
