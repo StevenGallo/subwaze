@@ -11,7 +11,7 @@ function fetchComments (req,res,next) {
 }
 
 function fetchFavs (req,res,next) {
-  models.sequelize.query('SELECT "Trains"."line", "Users"."firstName" FROM "Trains" JOIN "Favorites" ON "Favorites"."train_id" = "Trains"."id" JOIN "Users" ON "Favorites"."user_id" = "Users"."id" WHERE "Users"."id" = :id', {
+  models.sequelize.query('SELECT "Trains"."line", "Users"."firstName", "Trains"."id" FROM "Trains" JOIN "Favorites" ON "Favorites"."train_id" = "Trains"."id" JOIN "Users" ON "Favorites"."user_id" = "Users"."id" WHERE "Users"."id" = :id', {
     replacements: { id: req.user.dataValues.id }, /// replaces :id in the query
     type: models.sequelize.QueryTypes.SELECT
   }).then((favs) => {

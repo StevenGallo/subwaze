@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta charset="UTF-8">
   <title>Document</title>
 </head>
@@ -8,7 +9,9 @@
 <% include ../partials/header.ejs %>
 <h2> Hello, <%= user.firstName %> </h2>
 <% favs.forEach((fav) => { %>
-    <div> <%= fav.line %> </div>
+    <a href="/trains/<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light yellow"><i class="material-icons"><%= fav.line %> </i></a>
 <% }) %>
+
+<a href="/trains" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">search</i></a>
 </body>
 </html>
