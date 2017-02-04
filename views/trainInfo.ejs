@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+</head>
+<!--   <% include partials/head.ejs %> -->
+  <body>
+<% include partials/header.ejs %>
+
+    <div class="container">
+      <div class="section center-align">
+      <!-- <h1 class="center-align"><%= trains.line %> Train</h1> -->
+        <div class="row">
+          <a class="btn-floating btn-large waves-effect waves-light <%= trains.color %>"><i class="material-icons"><%= trains.line %></i></a>
+         </div>
+        </div>
+
+        <div class="train_status" style="width:200px; font-size:30px; color:green;">
+            On Time
+        </div>
+       <% comments.forEach((comment) => { %>
+          <div class="comment_list" style="width: 700px; border:5px solid black">
+              <div class="comment">
+                  <span class="time"><%= comment.createdAt %></span>
+                  <p>
+                      <%= comment.comment %>
+                  </p>
+                  <div class="user_name"><%= comment.user_id %></div> <br />
+                  <span class="likes">Likes : <%= comment.likes %></span>
+                  <span class="dislike">Dislikes: <%= comment.dislikes%></span>
+              </div>
+          </div>
+        <% }) %>
+        </div>
+
+
+
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  </body>
+</html>

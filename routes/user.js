@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
-const authHelpers = require('../auth/auth-helpers');
-const models = require('../db/models/index');
 
+var models = require('../db/models/index');
+var helperware = require('./helperware');
 
-router.get('/', authHelpers.loginRequired, fetchFavs, (req, res, next) => {
-    res.render('user/favs', {
-        favs: favs
-    });
+/* GET users listing. */
+router.get('/', helperware.fetchFavs, function(req, res, next) {
+  res.render('user/favs', {
+    user: req.user.dataValues,
+    favs: res.locals.favs
+  });
 });
 
 module.exports = router;
+

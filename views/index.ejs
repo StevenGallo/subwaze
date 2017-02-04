@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+<% include partials/head.ejs%>
   <body>
     <% include partials/header.ejs %>
-   <a href="/trains"><button type="submit" value="View Routes"></button></a>
-   <a href="/auth/login"><button type="submit" value="Log In"></button></a>
-   <a href="/auth/register"><button type="submit" value="Sign Up"></button></a>
+    <div class="container">
+    <div class="center">
+     <div class="size center-align button">
+       <a class="waves-effect waves-light btn-large col s3" href="/trains"><i class="material-icons left">visibility</i>View Routes</a>
+     </div>
+     <div class="size center-align button">
+        <a class="waves-effect waves-light btn-large col s3" href="/auth/login"><i class="material-icons left">perm_identity</i>Log In</a>
+     </div>
+     <div class="size center-align button">
+       <a class="waves-effect waves-light btn-large" href="/auth/register"><i class="material-icons left">perm_identity</i>Sign Up</a>
+     </div>
+   </div>
+   </div>
 
 
 
 
-  <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+<% include partials/scripts.ejs %>
   </body>
 </html>
