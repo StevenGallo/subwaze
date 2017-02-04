@@ -5,7 +5,8 @@ var models = require('../db/models/index');
 
 
 function fetchComments (req,res,next) {
-  models.sequelize.query('SELECT "Users"."firstName", "Comments"."comment",  "Comments"."createdAt", "Comments"."likes", "Comments"."dislikes", "Comments"."updatedAt" FROM "Comments" JOIN "Users" ON "Users"."id" = "Comments"."user_id" JOIN "Trains" ON "Comments"."train_id" = "Trains"."id"', {
+  models.sequelize.query('SELECT "Users"."firstName", "Comments"."comment",  "Comments"."createdAt", "Comments"."likes", "Comments"."dislikes", "Comments"."updatedAt" FROM "Comments" JOIN "Users" ON "Users"."id" = "Comments"."user_id" JOIN "Trains" ON "Comments"."train_id" = "Trains"."id" WHERE "Trains"."id" = :id', {
+    replacements: { id: req.params.id },
     type: models.sequelize.QueryTypes.SELECT
   }).then((comments) => {
     res.locals.comments = comments;

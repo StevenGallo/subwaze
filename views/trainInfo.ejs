@@ -20,7 +20,7 @@
         <div class="train_status" style="width:200px; font-size:30px; color:green;">
             On Time
         </div>
-       <% comments.forEach((comment) => { %>
+       <% comments.reverse().forEach((comment) => { %>
           <div class="comment_list" style="width: 700px; border:5px solid black">
               <div class="comment">
                   <span class="time"><%= comment.createdAt %></span>
