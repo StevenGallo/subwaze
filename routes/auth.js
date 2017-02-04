@@ -17,7 +17,7 @@ router.post('/register', (req, res, next) => {
                 res.redirect('/user/');
             });
         })
-        .catch((err) => { res.status(500).json({ status: 'error' }); });
+        .catch((err) => { console.log(req) });
 });
 
 router.get('/login', authHelpers.loginRedirect, (req, res) => {
