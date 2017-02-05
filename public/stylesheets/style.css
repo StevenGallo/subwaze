@@ -1,2 +1,10 @@
+.hidden {
+  display: none; }
+
+.show {
+  display: block; }
+
+#mustLogin {
+  color: red; }
 
 /*# sourceMappingURL=style.css.map */

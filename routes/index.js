@@ -16,12 +16,15 @@ router.get('/trains', function(req, res, next) {
   })
 });
 
-router.get('/trains/:id', helperware.fetchComments, function(req, res, next) {
+router.get('/trains/:id', helperware.userRedirect, helperware.fetchComments, function(req, res, next) {
+// passing a few helper function in on this one..the first checks to see if user is logged in, if so user is redirected to user route,
+// if not index route is rendered,
   models.Train.findById(req.params.id).then((trains) => {
     res.render('trainInfo', {
     title: 'Subwaze | Line',
     trains: trains,
-    comments: res.locals.comments
+    comments: res.locals.comments,
+    user: 'not logged in'
   });
   })
 });

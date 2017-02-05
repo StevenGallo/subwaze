@@ -34,9 +34,9 @@
           </div>
         <% }) %>
         </div>
-        <button class="center">Add comment</button>
+        <button onclick="showComments()">Add comment</button>
 
-        <form class="center" action="/user/trains/<%= trains.id %>/comment" method="POST">
+        <form id="addComment" class="hidden" action="/user/trains/<%= trains.id %>/comment" method="POST">
             <input type="text" name="comment" />
             <input type="submit" value="Post" />
         </form>
@@ -54,6 +54,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
 <script>
+    function showComments () {
+        if('<%= user %>' === 'not logged in') {
+          // had to pass user different values, on both the index route and user route, to have button perform different functions.
+            document.getElementById('mustLogin').innerHTML='Must be logged in to add comment';
+        } else if ('<%= user %>' !== 'not logged in') {
+           document.getElementById('addComment').classList.toggle('show');
+        }
+    }
 
 </script>
 
