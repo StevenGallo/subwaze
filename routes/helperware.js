@@ -24,8 +24,18 @@ function fetchFavs (req,res,next) {
   });
 }
 
+function userRedirect(req, res, next) {
+  // show page functionality depends on distinguishing between logged in user, and non logged in user
+  // logged in user will be sent to the same ejs through a different route
+    if (req.user) {
+      res.redirect(`/user/trains/${req.params.id}`);
+    }
+    return next();
+}
+
 module.exports = {
   fetchComments,
-  fetchFavs
+  fetchFavs,
+  userRedirect
 }
 
