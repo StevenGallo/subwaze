@@ -7,33 +7,81 @@
 </head>
 <!--   <% include partials/head.ejs %> -->
   <body>
-<% include partials/header.ejs %>
+
+
+    <% include partials/header.ejs %>
+
+        <a href="/"><span>Home</span></a> |
+    <% if (user !== 'not logged in') { %>
+        <a href="/user/"><span>Profile</span></a> |
+    <% } %>
+    <a href="/trains"><span>View All Trains</span></a>
 
     <div class="container">
-      <div class="section center-align">
-      <!-- <h1 class="center-align"><%= trains.line %> Train</h1> -->
-        <div class="row">
-          <a class="btn-floating btn-large waves-effect waves-light <%= trains.color %>"><i class="material-icons"><%= trains.line %></i></a>
-         </div>
+        <div class="section center-align">
+        <!-- <h1 class="center-align"><%= trains.line %> Train</h1> -->
+            <div class="row">
+                <a class="btn-floating btn-large waves-effect waves-light <%= trains.color %>"><i class="material-icons"><%= trains.line %></i></a>
+            </div>
         </div>
 
         <div class="train_status" style="width:200px; font-size:30px; color:green;">
             On Time
         </div>
-       <% comments.reverse().forEach((comment) => { %>
-          <div class="comment_list" style="width: 700px; border:5px solid black">
-              <div class="comment">
-                  <span class="time"><%= comment.createdAt %></span>
-                  <p>
-                      <%= comment.comment %>
-                  </p>
+
+        <% if (user !== 'not logged in') { %>
+             <% if (favsArr.indexOf(trains.id) === -1) { %>
+
+               <form class="favForm" id="favForm" onsubmit="printFav(event);" action="<%= '/user/' + '/favorites/' + trains.id + '?_method=POST' %>" method="POST">
+                  <input type="submit" id="addFavButton" value="Follow This Train" />
+              </form>
+
+            <% } else  { %>
+                <p id="favConfirm" class="center">You're following this train!</p>
+            <% } %>
+        <% } %>
+
+        <p id="favConfirm" class="center"></p>
+        <div id="updateForm"></div>
+
+        <% comments.reverse().forEach((comment) => { %>
+
+
+            <div id="commentList" class="comment_list" style="width: 700px; border:5px solid black">
+                 <div>
+                    <span class="time"><%= comment.createdAt %></span>
+                    <p>
+                        <%= comment.comment %>
+                    </p>
                   <div class="user_name"><%= comment.firstName %></div> <br />
                   <span class="likes">Likes : <%= comment.likes %></span>
                   <span class="dislike">Dislikes: <%= comment.dislikes%></span>
+
+                  <% if (user.firstName ===  comment.firstName) { %>
+
+                      <span onclick="editForm('<%= trains.id %>', '<%= comment.id %>', '<%= comment.comment %>');" class="edit">&#x270e;</span>
+
+                      <form  onsubmit="javascript:
+                            if('<%= user.firstName %>' !== '<%= comment.firstName %>') {
+                                event.preventDefault();
+                                document.getElementById('notUser').innerHTML='Not cool, that\'s not your comment!';
+                              }"
+                        action="<%= '/user/' + trains.id + '/comment/' + comment.id + '/delete' + '?_method=DELETE' %>" method="POST">
+                          <input type="submit" value='X'/>
+
+                      </form>
+
+                  <% } %>
+
+                  <p id="notUser" class="center"></p>
+
               </div>
           </div>
         <% }) %>
-        </div>
+
+
+    </div>
+
         <button onclick="showComments()">Add comment</button>
 
         <form id="addComment" class="hidden" action="/user/trains/<%= trains.id %>/comment" method="POST">
@@ -47,23 +95,71 @@
 
 
 
-  <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+      <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
-<script>
-    function showComments () {
-        if('<%= user %>' === 'not logged in') {
-          // had to pass user different values, on both the index route and user route, to have button perform different functions.
-            document.getElementById('mustLogin').innerHTML='Must be logged in to add comment';
-        } else if ('<%= user %>' !== 'not logged in') {
-           document.getElementById('addComment').classList.toggle('show');
-        }
-    }
+        <script>
+            function showComments () {
+                if('<%= user %>' === 'not logged in') {
+                  // had to pass user different values, on both the index route and user route, to have button perform different functions.
+                    document.getElementById('mustLogin').innerHTML='Must be logged in to add comment';
+                } else if ('<%= user %>' !== 'not logged in') {
+                   document.getElementById('addComment').classList.toggle('show');
+                }
+            }
+            function printFav (event) {
+                // event.preventDefault();
+                document.getElementById('favConfirm').innerHTML='Added to favorites';
+                document.getElementById('favForm').classList.add('hidden');
+            }
+            function editForm (trainsId, id, comment) {
+              console.log(comment)
+                const updateForm = document.getElementById('updateForm');
+                const form = document.createElement('form');
+                form.setAttribute('id', 'removeEditForm');
+                const input = document.createElement('input');
+                input.setAttribute('type', 'text');
+                input.setAttribute('value', comment);
+                input.setAttribute('name', 'comment');
+                const submit = document.createElement('input');
+                const cancel = document.createElement('button');
+                cancel.innerHTML='Cancel';
+                submit.setAttribute('type', 'submit');
+                submit.setAttribute('value', 'Save');
+                form.setAttribute('action', `/user/${trainsId}/comment/${id}/edit?_method=PUT`);
+                form.setAttribute('method', "POST");
+                form.appendChild(input);
+                form.appendChild(submit);
+                form.appendChild(cancel);
+                updateForm.appendChild(form);
+                let comments = document.getElementsByClassName('comment_list');
+                for (let comment of comments) {
+                  comment.classList.add('hidden');
+                }
 
-</script>
+            }
+            function hideEditForm (event) {
+                event.preventDefault();
+                document.getElementById('editComment').classList.remove('show');
+                let comments = document.getElementsByClassName('comment_list');
+                for (let comment of comments) {
+                  comment.classList.remove('hidden');
+                }
+            }
+            function removeForm (event) {
+                const updateForm = document.getElementById('updateForm');
+                event.preventDefault();
+                const form = document.getElementById('removeEditForm');
+                updateForm.removeChild(button);
+            }
+
+
+
+
+        </script>
 
   </body>
 </html>

@@ -4,7 +4,10 @@
 .show {
   display: block; }
 
-#mustLogin {
+#mustLogin, #notUser {
   color: red; }
+
+#favConfirm {
+  color: green; }
 
 /*# sourceMappingURL=style.css.map */
