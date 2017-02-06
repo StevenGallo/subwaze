@@ -34,9 +34,20 @@ router.post('/trains/:id/comment', function(req, res, next) {
 });
 
 router.delete('/:id/comment/:cid/delete', function(req, res, next) {
+  // delete from comments where comment.id = :cid && train_id=:id && user_id = req.user
   models.Comment.destroy({
     where: { id: req.params.cid, train_id: req.params.id, user_id: req.user.dataValues.id }
   }).then(function() {
+    res.redirect(`/trains/${req.params.id}`)
+  });
+});
+
+router.put('/:id/comment/:cid/edit', function(req, res, next) {
+    // update comments where comment.id = :cid && train_id=:id && user_id = req.user
+    console.log(`workplease ${req.body.comment}`);
+  models.Comment.update({
+    comment:req.body.comment
+  }, { where: { id: req.params.cid }}).then(function() {
     res.redirect(`/trains/${req.params.id}`)
   });
 });
@@ -50,7 +61,5 @@ router.post('/favorites/:id', function(req, res, next) {
   });
 });
 
-
-"<%= '/users/' + trains.id + '?_method=POST' %>"
 
 module.exports = router;

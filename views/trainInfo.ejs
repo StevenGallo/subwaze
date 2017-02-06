@@ -42,10 +42,13 @@
         <% } %>
 
         <p id="favConfirm" class="center"></p>
+        <div id="updateForm"></div>
 
         <% comments.reverse().forEach((comment) => { %>
-            <div class="comment_list" style="width: 700px; border:5px solid black">
-                <div class="comment">
+
+
+            <div id="commentList" class="comment_list" style="width: 700px; border:5px solid black">
+                 <div>
                     <span class="time"><%= comment.createdAt %></span>
                     <p>
                         <%= comment.comment %>
@@ -54,20 +57,29 @@
                   <span class="likes">Likes : <%= comment.likes %></span>
                   <span class="dislike">Dislikes: <%= comment.dislikes%></span>
 
-                  <span class="edit">&#x270e;</span>
+                  <% if (user.firstName ===  comment.firstName) { %>
 
-                  <form  onsubmit="javascript:
-                        if('<%= user.firstName %>' !== '<%= comment.firstName %>') {
-                            event.preventDefault();
-                            document.getElementById('notUser').innerHTML='Not cool, that\'s not your comment!';
-                          }"
-                    action="<%= '/user/' + trains.id + '/comment/' + comment.id + '/delete' + '?_method=DELETE' %>" method="POST">
-                      <input type="submit" value='X'/>
-                  </form>
+                      <span onclick="editForm('<%= trains.id %>', '<%= comment.id %>', '<%= comment.comment %>');" class="edit">&#x270e;</span>
+
+                      <form  onsubmit="javascript:
+                            if('<%= user.firstName %>' !== '<%= comment.firstName %>') {
+                                event.preventDefault();
+                                document.getElementById('notUser').innerHTML='Not cool, that\'s not your comment!';
+                              }"
+                        action="<%= '/user/' + trains.id + '/comment/' + comment.id + '/delete' + '?_method=DELETE' %>" method="POST">
+                          <input type="submit" value='X'/>
+
+                      </form>
+
+                  <% } %>
+
                   <p id="notUser" class="center"></p>
+
               </div>
           </div>
         <% }) %>
+
+
     </div>
 
         <button onclick="showComments()">Add comment</button>
@@ -103,6 +115,50 @@
                 document.getElementById('favConfirm').innerHTML='Added to favorites';
                 document.getElementById('favForm').classList.add('hidden');
             }
+            function editForm (trainsId, id, comment) {
+              console.log(comment)
+                const updateForm = document.getElementById('updateForm');
+                const form = document.createElement('form');
+                form.setAttribute('id', 'removeEditForm');
+                const input = document.createElement('input');
+                input.setAttribute('type', 'text');
+                input.setAttribute('value', comment);
+                input.setAttribute('name', 'comment');
+                const submit = document.createElement('input');
+                const cancel = document.createElement('button');
+                cancel.innerHTML='Cancel';
+                submit.setAttribute('type', 'submit');
+                submit.setAttribute('value', 'Save');
+                form.setAttribute('action', `/user/${trainsId}/comment/${id}/edit?_method=PUT`);
+                form.setAttribute('method', "POST");
+                form.appendChild(input);
+                form.appendChild(submit);
+                form.appendChild(cancel);
+                updateForm.appendChild(form);
+                let comments = document.getElementsByClassName('comment_list');
+                for (let comment of comments) {
+                  comment.classList.add('hidden');
+                }
+
+            }
+            function hideEditForm (event) {
+                event.preventDefault();
+                document.getElementById('editComment').classList.remove('show');
+                let comments = document.getElementsByClassName('comment_list');
+                for (let comment of comments) {
+                  comment.classList.remove('hidden');
+                }
+            }
+            function removeForm (event) {
+                const updateForm = document.getElementById('updateForm');
+                event.preventDefault();
+                const form = document.getElementById('removeEditForm');
+                updateForm.removeChild(button);
+            }
+
+
+
+
         </script>
 
   </body>
