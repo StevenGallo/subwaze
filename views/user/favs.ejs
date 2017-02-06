@@ -12,9 +12,7 @@
 <% include ../partials/header.ejs %>
 <h2> Hello, <%= user.firstName %> </h2>
 <% favs.forEach((fav) => { %>
-
     <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light <%= fav.color %>"><%= fav.line %><i class="material-icons"></i></a>
-
 <% }) %>
 <button id="remove" onclick="remove()" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">delete</i></button>
 
@@ -27,13 +25,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 <script>
 function remove(){
-$("#remove").remove();
-$("a").each(function(){
+$('h2').html('Select a Line to remove from favorites list')
+$('#remove').remove();
+$('a').each(function(){
     $(this).wrap('<form id ="'+(this.id)+'fav" action="/user/delete/'+(this.id)+'?_method=DELETE" method="POST"></form>');
-    this.href='javascript:document.getElementById('+this.id+'fav).submit()';
+    //change href to perform javascript instead of referencing route created http://stackoverflow.com/questions/4674625/
+    this.href='javascript:submitForm("'+this.id+'fav");'
     $('form').css('display', 'inline')
-    
+   
 })
+}
+function submitForm(trainID){
+    console.log( trainID)
+    $('#'+trainID+'').submit()
 }
 </script>
 </body>
