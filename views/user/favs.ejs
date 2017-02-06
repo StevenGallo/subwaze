@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
   <meta charset="UTF-8">
   <title>Document</title>
 </head>
@@ -10,7 +12,9 @@
 <% include ../partials/header.ejs %>
 <h2> Hello, <%= user.firstName %> </h2>
 <% favs.forEach((fav) => { %>
-    <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light yellow"><i class="material-icons"><%= fav.line %> </i></a>
+
+    <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light <%= fav.color %>"><%= fav.line %><i class="material-icons"></i></a>
+
 <% }) %>
 <button id="remove" onclick="remove()" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">delete</i></button>
 
