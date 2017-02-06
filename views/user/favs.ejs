@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<% include ../partials/head.ejs %>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-
-  <meta charset="UTF-8">
-  <title>Document</title>
 </head>
 <body>
-<% include ../partials/header.ejs %>
+<% include ../partials/nav.ejs %>
+
+
+<div class="center-align">
 <h2> Hello, <%= user.firstName %> </h2>
 <% favs.forEach((fav) => { %>
-    <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light <%= fav.color %>"><%= fav.line %><i class="material-icons"></i></a>
+    <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light col s3 <%= fav.color %>"><%= fav.line %><i class="material-icons"></i></a>
 <% }) %>
-<button id="remove" onclick="remove()" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">delete</i></button>
+<button id="remove" onclick="remove()" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">delete</i></button>
 
 <a href="/trains" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">search</i></a>
+</div>
+
+
+
+
 
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -32,7 +36,7 @@ $('a').each(function(){
     //change href to perform javascript instead of referencing route created http://stackoverflow.com/questions/4674625/
     this.href='javascript:submitForm("'+this.id+'fav");'
     $('form').css('display', 'inline')
-   
+
 })
 }
 function submitForm(trainID){

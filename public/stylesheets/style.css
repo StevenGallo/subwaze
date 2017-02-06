@@ -1,13 +1,67 @@
-.hidden {
-  display: none; }
+body {
+  background-color: black; }
 
-.show {
-  display: block; }
+video {
+  opacity: .90;
+  margin: 0;
+  width: 100%;
+  height: 100%; }
 
-#mustLogin, #notUser {
-  color: red; }
+h2 {
+  color: white;
+  font-family: 'Syncopate', sans-serif; }
 
-#favConfirm {
-  color: green; }
+h1 {
+  font-size: 100px;
+  color: white;
+  /*font-family: 'Questrial', sans-serif;*/
+  font-family: 'Syncopate', sans-serif;
+  /*font-family: 'Michroma', sans-serif;*/ }
+
+blockquote {
+  font-size: 20px;
+  color: white;
+  font-family: 'Syncopate', sans-serif; }
+
+.buttonLandingPage {
+  border: 2px solid white;
+  font-family: 'Syncopate', sans-serif;
+  font-size: 30px;
+  font-color: white;
+  margin-top: 150px; }
+
+.buttonLandingPage:hover {
+  background-color: yellow; }
+
+.container {
+  position: absolute;
+  top: 100px;
+  left: 200px; }
+
+.remove {
+  border: none; }
+
+.nav-mobile {
+  background-color: black;
+  color: white; }
+
+.logo {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 25px;
+  color: white;
+  margin-left: 25px; }
+
+.li-nav {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 15px;
+  color: white;
+  margin-right: 25px; }
+
+.lines {
+  width: 40%;
+  border: 2px solid white; }
+
+.holderForLines {
+  margin: 0 auto; }
 
 /*# sourceMappingURL=style.css.map */

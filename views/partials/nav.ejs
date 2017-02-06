@@ -1,0 +1,15 @@
+<nav>
+  <div class="nav-container orange darken-4">
+    <a href="/" class="logo">Subwaze</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="li-nav"><a href="/">Home</a></li>
+    <% if (user !== 'not logged in') { %>
+        <li class="li-nav"><a href="/user/">Profile</a></li>
+    <% } %>
+     <li class="li-nav"><a href="/trains">View All Trains</a></li>
+     <li class="li-nav"><a href="/user/logout">Logout</a></li>
+      </ul>
+
+  </div>
+</nav>
+

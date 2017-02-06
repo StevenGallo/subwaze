@@ -2,22 +2,30 @@
 <html>
 <% include partials/head.ejs%>
   <body>
+
+   <section>
+      <video loop preload src="SubwazeEdit.mp4" autoplay poster=""></video>
+
+
+    <div class="container valign center-align">
     <% include partials/header.ejs %>
-    <div class="container">
-    <div class="center">
-     <div class="size center-align button">
-       <a class="waves-effect waves-light btn-large col s3" href="/trains"><i class="material-icons left">visibility</i>View Routes</a>
-     </div>
-     <div class="size center-align button">
-        <a class="waves-effect waves-light btn-large col s3" href="/auth/login"><i class="material-icons left">perm_identity</i>Log In</a>
-     </div>
-     <div class="size center-align button">
-       <a class="waves-effect waves-light btn-large" href="/auth/register"><i class="material-icons left">perm_identity</i>Sign Up</a>
-     </div>
-   </div>
-   </div>
+
+    <div class="row">
+      <div class="buttonLandingPage col s4 ">
+        <span><a href="/trains" class="center-align">View Routes</a></span>
+      </div>
 
 
+    <div class="buttonLandingPage mid col s4 ">
+        <a href="/auth/login" class="center-align">Log In</a>
+      </div>
+
+
+
+    <div class="buttonLandingPage col s4 ">
+        <a href="/auth/register" class="center-align">Sign Up</a>
+      </div>
+    </div>
 
 
 <% include partials/scripts.ejs %>
