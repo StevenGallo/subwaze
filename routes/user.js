@@ -5,10 +5,10 @@ var helperware = require('./helperware');
 
 /* GET users listing. */
 router.get('/', helperware.fetchFavs, function(req, res, next) {
-  res.render('user/favs', {
-    user: req.user.dataValues,
-    favs: res.locals.favs
-  });
+    res.render('user/favs', {
+        user: req.user.dataValues,
+        favs: res.locals.favs
+    });
 });
 
 router.get('/trains/:id', helperware.fetchComments, helperware.fetchFavsArray, function(req, res, next) {
@@ -21,16 +21,17 @@ router.get('/trains/:id', helperware.fetchComments, helperware.fetchFavsArray, f
     favsArr: res.locals.favsArray
   });
   })
+
 });
 
 router.post('/trains/:id/comment', function(req, res, next) {
-  models.Comment.create({
-    user_id:req.user.dataValues.id,
-    train_id:req.params.id,
-    comment:req.body.comment
-  }).then(function() {
-    res.redirect(`/trains/${req.params.id}`)
-  });
+    models.Comment.create({
+        user_id: req.user.dataValues.id,
+        train_id: req.params.id,
+        comment: req.body.comment
+    }).then(function() {
+        res.redirect(`/trains/${req.params.id}`)
+    });
 });
 
 router.delete('/:id/comment/:cid/delete', function(req, res, next) {
@@ -50,7 +51,13 @@ router.post('/favorites/:id', function(req, res, next) {
   });
 });
 
+router.delete('/delete/:id', function(req, res, next) {
+    models.Favorite.destroy({
+        where: { id: req.params.id }
+    }).then(function() {
+        res.redirect('/user');
+    });
+});
 
-"<%= '/users/' + trains.id + '?_method=POST' %>"
 
 module.exports = router;

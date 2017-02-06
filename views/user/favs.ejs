@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <meta charset="UTF-8">
   <title>Document</title>
 </head>
@@ -10,9 +12,30 @@
 <% include ../partials/header.ejs %>
 <h2> Hello, <%= user.firstName %> </h2>
 <% favs.forEach((fav) => { %>
-    <a href="/trains/<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light <%= fav.color %>"><%= fav.line %><i class="material-icons"></i></a>
+
+    <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light <%= fav.color %>"><%= fav.line %><i class="material-icons"></i></a>
+
+
 <% }) %>
+<button id="remove" onclick="remove()" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">delete</i></button>
 
 <a href="/trains" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">search</i></a>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+<script>
+function remove(){
+$("#remove").remove();
+$("a").each(function(){
+    $(this).wrap('<form id ="'+(this.id)+'fav" action="/user/delete/'+(this.id)+'?_method=DELETE" method="POST"></form>');
+    this.href='javascript:document.getElementById('+this.id+'fav).submit()';
+    $('form').css('display', 'inline')
+    
+})
+}
+</script>
 </body>
 </html>
