@@ -10,7 +10,7 @@
 <% include ../partials/header.ejs %>
 <h2> Hello, <%= user.firstName %> </h2>
 <% favs.forEach((fav) => { %>
-    <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light yellow"><i class="material-icons"><%= fav.line %> </i></a>
+    <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light yellow"><%= fav.line %><i class="material-icons"> </i></a>
 <% }) %>
 <button id="remove" onclick="remove()" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">delete</i></button>
 
