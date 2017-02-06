@@ -34,7 +34,7 @@ router.post('/trains/:id/comment', function(req, res, next) {
 
 router.delete('/delete/:id', function(req, res, next) {
     models.Favorite.destroy({
-        where: { id: req.params.id }
+        where: { train_id: req.params.id }
     }).then(function() {
         res.redirect('/user');
     });
