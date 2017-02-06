@@ -5,7 +5,7 @@ var models = require('../db/models/index');
 
 
 function fetchComments (req,res,next) {
-  models.sequelize.query('SELECT "Users"."firstName", "Comments"."comment",  "Comments"."createdAt", "Comments"."likes", "Comments"."dislikes", "Comments"."updatedAt" FROM "Comments" JOIN "Users" ON "Users"."id" = "Comments"."user_id" JOIN "Trains" ON "Comments"."train_id" = "Trains"."id" WHERE "Trains"."id" = :id', {
+  models.sequelize.query('SELECT "Users"."firstName", "Comments"."id", "Comments"."comment",  "Comments"."createdAt", "Comments"."likes", "Comments"."dislikes", "Comments"."updatedAt" FROM "Comments" JOIN "Users" ON "Users"."id" = "Comments"."user_id" JOIN "Trains" ON "Comments"."train_id" = "Trains"."id" WHERE "Trains"."id" = :id', {
     replacements: { id: req.params.id },
     type: models.sequelize.QueryTypes.SELECT
   }).then((comments) => {
@@ -15,11 +15,25 @@ function fetchComments (req,res,next) {
 }
 
 function fetchFavs (req,res,next) {
-  models.sequelize.query('SELECT "Trains"."line", "Users"."firstName", "Trains"."id" FROM "Trains" JOIN "Favorites" ON "Favorites"."train_id" = "Trains"."id" JOIN "Users" ON "Favorites"."user_id" = "Users"."id" WHERE "Users"."id" = :id', {
+  models.sequelize.query('SELECT "Trains"."line", "Users"."firstName", "Trains"."id", "Trains"."color" FROM "Trains" JOIN "Favorites" ON "Favorites"."train_id" = "Trains"."id" JOIN "Users" ON "Favorites"."user_id" = "Users"."id" WHERE "Users"."id" = :id', {
     replacements: { id: req.user.dataValues.id }, /// replaces :id in the query
     type: models.sequelize.QueryTypes.SELECT
   }).then((favs) => {
     res.locals.favs = favs;
+    return next();
+  });
+}
+
+function fetchFavsArray (req,res,next) {
+  models.sequelize.query('SELECT "Trains"."line", "Users"."firstName", "Trains"."id" FROM "Trains" JOIN "Favorites" ON "Favorites"."train_id" = "Trains"."id" JOIN "Users" ON "Favorites"."user_id" = "Users"."id" WHERE "Users"."id" = :id', {
+    replacements: { id: req.user.dataValues.id }, /// replaces :id in the query
+    type: models.sequelize.QueryTypes.SELECT
+  }).then((arr) => {
+    let array = [];
+    arr.forEach((item) => {
+      array.push(item.id)
+    })
+    res.locals.favsArray = array;
     return next();
   });
 }
@@ -36,6 +50,7 @@ function userRedirect(req, res, next) {
 module.exports = {
   fetchComments,
   fetchFavs,
-  userRedirect
+  userRedirect,
+  fetchFavsArray
 }
 

@@ -11,7 +11,7 @@
 
     <% include partials/header.ejs %>
 
-
+        <a href="/"><span>Home</span></a> |
     <% if (user !== 'not logged in') { %>
         <a href="/user/"><span>Profile</span></a> |
     <% } %>
@@ -30,13 +30,15 @@
         </div>
 
         <% if (user !== 'not logged in') { %>
-<!--              <% if (favs.indexOf(trains.id) === -1) { %> -->
+             <% if (favsArr.indexOf(trains.id) === -1) { %>
 
-             <form class="favForm" id="favForm" onsubmit="printFav(event);" action="<%= '/user/' + '/favorites/' + trains.id + '?_method=POST' %>" method="POST">
-                <input type="submit" id="addFavButton" value="Follow This Train" />
-            </form>
+               <form class="favForm" id="favForm" onsubmit="printFav(event);" action="<%= '/user/' + '/favorites/' + trains.id + '?_method=POST' %>" method="POST">
+                  <input type="submit" id="addFavButton" value="Follow This Train" />
+              </form>
 
-<!--             <% } %> -->
+            <% } else  { %>
+                <p id="favConfirm" class="center">You're following this train!</p>
+            <% } %>
         <% } %>
 
         <p id="favConfirm" class="center"></p>
@@ -51,6 +53,18 @@
                   <div class="user_name"><%= comment.firstName %></div> <br />
                   <span class="likes">Likes : <%= comment.likes %></span>
                   <span class="dislike">Dislikes: <%= comment.dislikes%></span>
+
+                  <span class="edit">&#x270e;</span>
+
+                  <form  onsubmit="javascript:
+                        if('<%= user.firstName %>' !== '<%= comment.firstName %>') {
+                            event.preventDefault();
+                            document.getElementById('notUser').innerHTML='Not cool, that\'s not your comment!';
+                          }"
+                    action="<%= '/user/' + trains.id + '/comment/' + comment.id + '/delete' + '?_method=DELETE' %>" method="POST">
+                      <input type="submit" value='X'/>
+                  </form>
+                  <p id="notUser" class="center"></p>
               </div>
           </div>
         <% }) %>

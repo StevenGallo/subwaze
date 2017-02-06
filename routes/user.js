@@ -11,14 +11,14 @@ router.get('/', helperware.fetchFavs, function(req, res, next) {
   });
 });
 
-router.get('/trains/:id', helperware.fetchComments, helperware.fetchFavs, function(req, res, next) {
+router.get('/trains/:id', helperware.fetchComments, helperware.fetchFavsArray, function(req, res, next) {
   models.Train.findById(req.params.id).then((trains) => {
     res.render('trainInfo', {
     title: 'Subwaze | Line',
     trains: trains,
     comments: res.locals.comments,
     user: req.user.dataValues,
-    favs: res.locals.favs
+    favsArr: res.locals.favsArray
   });
   })
 });
@@ -28,6 +28,14 @@ router.post('/trains/:id/comment', function(req, res, next) {
     user_id:req.user.dataValues.id,
     train_id:req.params.id,
     comment:req.body.comment
+  }).then(function() {
+    res.redirect(`/trains/${req.params.id}`)
+  });
+});
+
+router.delete('/:id/comment/:cid/delete', function(req, res, next) {
+  models.Comment.destroy({
+    where: { id: req.params.cid, train_id: req.params.id, user_id: req.user.dataValues.id }
   }).then(function() {
     res.redirect(`/trains/${req.params.id}`)
   });
