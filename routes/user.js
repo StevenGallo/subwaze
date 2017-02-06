@@ -11,15 +11,17 @@ router.get('/', helperware.fetchFavs, function(req, res, next) {
     });
 });
 
-router.get('/trains/:id', helperware.fetchComments, function(req, res, next) {
-    models.Train.findById(req.params.id).then((trains) => {
-        res.render('trainInfo', {
-            title: 'Subwaze | Line',
-            trains: trains,
-            comments: res.locals.comments,
-            user: req.user.dataValues
-        });
-    })
+router.get('/trains/:id', helperware.fetchComments, helperware.fetchFavsArray, function(req, res, next) {
+  models.Train.findById(req.params.id).then((trains) => {
+    res.render('trainInfo', {
+    title: 'Subwaze | Line',
+    trains: trains,
+    comments: res.locals.comments,
+    user: req.user.dataValues,
+    favsArr: res.locals.favsArray
+  });
+  })
+
 });
 
 router.post('/trains/:id/comment', function(req, res, next) {
@@ -32,6 +34,23 @@ router.post('/trains/:id/comment', function(req, res, next) {
     });
 });
 
+router.delete('/:id/comment/:cid/delete', function(req, res, next) {
+  models.Comment.destroy({
+    where: { id: req.params.cid, train_id: req.params.id, user_id: req.user.dataValues.id }
+  }).then(function() {
+    res.redirect(`/trains/${req.params.id}`)
+  });
+});
+
+router.post('/favorites/:id', function(req, res, next) {
+  models.Favorite.create({
+    user_id:req.user.dataValues.id,
+    train_id:req.params.id
+  }).then(function() {
+    res.redirect(`/trains/${req.params.id}`)
+  });
+});
+
 router.delete('/delete/:id', function(req, res, next) {
     models.Favorite.destroy({
         where: { id: req.params.id }
@@ -39,5 +58,6 @@ router.delete('/delete/:id', function(req, res, next) {
         res.redirect('/user');
     });
 });
+
 
 module.exports = router;
