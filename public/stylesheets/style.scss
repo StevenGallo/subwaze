@@ -8,16 +8,17 @@ iframe {
   width:100%;
   height: 100%;
 }
-@keyframes drop {
-  from {margin-top: -100px;}
-  to{margin-top:22px;}
-}
+// @keyframes drop {
+//   from {margin-top: -100px;}
+//   to{margin-top:50px;}
+// }
 
 .h3DropDown {
   z-index: -1;
   color: white;
   font-family: 'Syncopate', sans-serif;
-  animation: 1.2s drop ease-in-out;
+  animation: 2s fade ease-in-out;
+  margin-top: 50px;
   position: relative;
 }
  @keyframes fade {
@@ -26,9 +27,8 @@ iframe {
  }
 
 .buttonGroup {
-  padding-top: 2rem;
-  margin-top: 100px;
-  animation: 2s fade ease-in-out ;
+  padding-top: 1rem;
+  animation: 2s fade ease-in-out;
 }
 
 h2 {
@@ -71,12 +71,6 @@ blockquote {
   margin-top:200px;
 }
 
-.container2 {
-  position: absolute;
-  top: 100px;
-  left: 200px;
-}
-
 .remove {
   border: none;
 }
@@ -115,10 +109,10 @@ blockquote {
   display: block;
 }
 #bigTrainCircle {
-    width: 300px;
-    height: 300px;
-    font-size: 300px;
-    padding-top: 125px;
+    width: 250px;
+    height: 250px;
+    font-size: 250px;
+    padding-top: 100px;
     padding-left: 10px;
     box-shadow: inset 2px 2px 16px black;
 }
