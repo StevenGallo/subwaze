@@ -12,7 +12,9 @@ router.get('/trains', helperware.trainRedirect, function(req, res, next) {
         res.render('trainLines', {
             title: 'Select A Train',
             trains: trains,
-            user: 'not logged in'
+            user: 'not logged in',
+            onTrains: true,
+            title: 'subwaze trains'
         });
     })
 });
@@ -26,7 +28,9 @@ router.get('/trains/:id', helperware.userRedirect, helperware.fetchComments, fun
             title: 'Subwaze | Line',
             trains: trains,
             comments: res.locals.comments,
-            user: 'not logged in'
+            user: 'not logged in',
+            onTrains: false,
+            title: `subwaze trains`
         });
     })
 });
