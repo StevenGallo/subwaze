@@ -11,7 +11,8 @@ router.get('/trains', function(req, res, next) {
   models.Train.findAll({}).then((trains) => {
     res.render('trainLines', {
     title: 'Select A Train',
-    trains:trains
+    trains:trains,
+    user: 'not logged in'
   });
   })
 });
