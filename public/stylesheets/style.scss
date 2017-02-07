@@ -67,6 +67,7 @@ blockquote {
   background-color: yellow;
 }
 
+
 .colSeperation {
   margin-top:200px;
 
@@ -78,6 +79,7 @@ blockquote {
   left: 200px;
 
 }
+
 
 .remove {
   border: none;
@@ -150,8 +152,8 @@ blockquote {
   color:gray;
   border: none;
   border-top: 1px solid #e0e0e0;
-  padding-top:30px;
-  padding-bottom:30px;
+  padding-top:40px;
+  padding-bottom:40px;
 }
 .collection {
     margin: .5rem 0 1rem 0;
@@ -165,20 +167,20 @@ a:hover {
   cursor: pointer;
 }
 #pencil {
-  margin-right: 35px;
+  margin-right: 15px;
   font-size: 30px;
 }
 .secondary-content {
-    float: right;
     color: gray;
-    font-size: 40px;
+    margin-right:-15px;
+    margin-top: -5px;
 }
 #saveButton, #postButton {
     color: #26a69a;
     line-height: inherit;
 }
 .title {
-  font-size: 20px;
+  // font-size: 20px;
 }
 #commmentPost {
   font-size: 15px;
@@ -192,7 +194,13 @@ a:hover {
   position: fixed;
   right: 4vw;
   bottom: 4vw;
-
+}
+@media screen and (max-width: 1032px) {
+    #showComButton {
+        position: static;
+        margin-left:39vw;
+        margin-bottom:5vw;
+    }
 }
 
 .lineName {
@@ -206,7 +214,7 @@ input[type=text], input[type=password], input[type=email] {
   letter-spacing: 4px;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: lighter;
-  color:rgba(170, 194, 192, .4);
+  color:rgba(170, 194, 192, .5);
 }
 #favForm {
   text-align: center;
@@ -220,4 +228,8 @@ input[type=text], input[type=password], input[type=email] {
 }
 #mustLogin {
   color:red;
+}
+.section {
+    padding-top: 3rem;
+    padding-bottom: 1rem;
 }
