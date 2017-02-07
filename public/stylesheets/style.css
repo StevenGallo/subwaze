@@ -28,6 +28,7 @@ iframe {
     opacity: 1; } }
 
 .buttonGroup {
+  padding-top: 2rem;
   margin-top: 100px;
   animation: 2s fade ease-in-out; }
 
@@ -62,8 +63,10 @@ blockquote {
   background-color: yellow; }
 
 
+
 .colSeperation {
   margin-top: 200px; }
+
 
 .container2 {
   position: absolute;
@@ -137,7 +140,7 @@ blockquote {
   padding-top: 40px;
   padding-bottom: 40px; }
 
-.collection {
+.comment_list {
   margin: .5rem 0 1rem 0;
   border: 0px solid #e0e0e0;
   border-radius: 2px;
@@ -174,16 +177,15 @@ a:hover {
   right: 4vw;
   bottom: 4vw; }
 
-.lineName {
-  font-size: 20px;
-  font-family: 'Syncopate', sans-serif; }
-
 @media screen and (max-width: 1032px) {
   #showComButton {
     position: static;
     margin-left: 39vw;
     margin-bottom: 5vw; } }
 
+.lineName {
+  font-size: 20px;
+  font-family: 'Syncopate', sans-serif; }
 
 input[type=text], input[type=password], input[type=email] {
   text-align: center;
@@ -206,7 +208,7 @@ input[type=text], input[type=password], input[type=email] {
 #mustLogin {
   color: red; }
 
-.section {
+.bigCirc {
   padding-top: 3rem;
   padding-bottom: 1rem; }
 
