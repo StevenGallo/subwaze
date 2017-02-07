@@ -67,11 +67,7 @@ module.exports = {
     fetchFavs,
     userRedirect,
     fetchFavsArray,
-<<<<<<< HEAD
     indexRedirect,
     trainRedirect
 }
-=======
-    indexRedirect
-}
->>>>>>> moment capture added
+

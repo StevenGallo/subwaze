@@ -13,7 +13,6 @@ iframe {
     margin-top: -100px; }
   to {
     margin-top: 22px; } }
-
 .h3DropDown {
   z-index: -1;
   color: white;
@@ -26,7 +25,6 @@ iframe {
     opacity: 0; }
   to {
     opacity: 1; } }
-
 .buttonGroup {
   padding-top: 2rem;
   margin-top: 100px;
@@ -62,17 +60,13 @@ blockquote {
 .buttonLandingPage:hover {
   background-color: yellow; }
 
-
-
 .colSeperation {
   margin-top: 200px; }
-
 
 .container2 {
   position: absolute;
   top: 100px;
   left: 200px; }
-
 
 .remove {
   border: none; }
@@ -182,7 +176,6 @@ a:hover {
     position: static;
     margin-left: 39vw;
     margin-bottom: 5vw; } }
-
 .lineName {
   font-size: 20px;
   font-family: 'Syncopate', sans-serif; }
