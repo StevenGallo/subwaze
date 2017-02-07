@@ -21,6 +21,7 @@ iframe {
     opacity: 0; }
   to {
     opacity: 1; } }
+
 .buttonGroup {
   padding-top: 1rem;
   animation: 2s fade ease-in-out; }
@@ -166,6 +167,7 @@ a:hover {
     position: static;
     margin-left: 39vw;
     margin-bottom: 5vw; } }
+
 .lineName {
   font-size: 20px;
   font-family: 'Syncopate', sans-serif; }
@@ -194,5 +196,15 @@ input[type=text], input[type=password], input[type=email] {
 .bigCirc {
   padding-top: 3rem;
   padding-bottom: 1rem; }
+
+#nycCommute {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(170, 194, 192, 0.5);
+  letter-spacing: 4px; }
+
+h3, h4 {
+  font-family: 'Syncopate', sans-serif; }
 
 /*# sourceMappingURL=style.css.map */
