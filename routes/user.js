@@ -9,6 +9,17 @@ router.get('/', helperware.indexRedirect, helperware.fetchFavs, function(req, re
         user: req.user.dataValues,
         favs: res.locals.favs
     });
+    console.log(favs)
+});
+
+router.get('/trains', function(req, res, next) {
+    models.Train.findAll({}).then((trains) => {
+        res.render('trainLines', {
+            title: 'Select A Train',
+            trains: trains,
+            user: req.user.dataValues
+        });
+    })
 });
 
 router.get('/trains/:id', helperware.indexRedirect, helperware.fetchComments, helperware.fetchFavsArray, function(req, res, next) {

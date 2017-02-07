@@ -45,6 +45,13 @@ function indexRedirect(req, res, next) {
     return next();
 }
 
+function trainRedirect(req, res, next) {
+    if (req.user) {
+        res.redirect('/user/trains');
+    }
+    return next();
+}
+
 function userRedirect(req, res, next) {
     // show page functionality depends on distinguishing between logged in user, and non logged in user
     // logged in user will be sent to the same ejs through a different route
@@ -59,5 +66,6 @@ module.exports = {
     fetchFavs,
     userRedirect,
     fetchFavsArray,
-    indexRedirect
+    indexRedirect,
+    trainRedirect
 }
