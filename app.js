@@ -9,6 +9,7 @@ var passport = require('passport');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var auth = require('./routes/auth');
+var moment = require('moment');
 var methodOverride = require('method-override');
 var app = express();
 
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.locals.moment=moment;
 app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(bodyParser.json());

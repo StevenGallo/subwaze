@@ -32,13 +32,13 @@
         <p id="mustLogin" class="center"></p>
 
         <ul class="collection comment_list">
-            <% comments.reverse().forEach((comment) => { %>
+            <% comments.forEach((comment) => { %>
 
                 <li  id="listComm" class="collection-item avatar">
                     <img src="/images/person2.png" alt="" class="circle">
                     <span id="commmentPost" class="title"><%= comment.comment %></span>
                     <p>Posted By : <span id="poster"><%= comment.firstName %></span> <br>
-                        @ <%= comment.createdAt %>
+                         <%= moment(comment.updatedAt).fromNow()%>
                     </p>
                     <% if (user.firstName ===  comment.firstName) { %>
                         <div>
