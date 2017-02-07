@@ -1,99 +1,60 @@
 <!DOCTYPE html>
-<html>
-<head>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-<link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<!--   <% include partials/head.ejs %> -->
+  <% include partials/head.ejs %>
   <body>
-
-
-    <% include partials/header.ejs %>
-
-        <a href="/"><span>Home</span></a> |
-    <% if (user !== 'not logged in') { %>
-        <a href="/user/"><span>Profile</span></a> |
-    <% } %>
-    <a href="/trains"><span>View All Trains</span></a>
+<% include partials/nav.ejs %>
 
     <div class="container">
         <div class="section center-align">
         <!-- <h1 class="center-align"><%= trains.line %> Train</h1> -->
             <div class="row">
-                <a class="btn-floating btn-large waves-effect waves-light <%= trains.color %>"><i class="material-icons"><%= trains.line %></i></a>
+                <a class="btn-floating btn-large waves-effect waves-light <%= trains.color %>" id="bigTrainCircle"><%= trains.line %><i class="material-icons"></i></a>
             </div>
         </div>
 
-        <div class="train_status" style="width:200px; font-size:30px; color:green;">
-            On Time
-        </div>
+
 
         <% if (user !== 'not logged in') { %>
              <% if (favsArr.indexOf(trains.id) === -1) { %>
 
-               <form class="favForm" id="favForm" onsubmit="printFav(event);" action="<%= '/user/' + '/favorites/' + trains.id + '?_method=POST' %>" method="POST">
-                  <input type="submit" id="addFavButton" value="Follow This Train" />
+               <form class="favForm" id="favForm" action="<%= '/user/' + '/favorites/' + trains.id + '?_method=POST' %>" method="POST">
+                  <input type="submit" id="addFavButton" value="+ Add to favorites" />
               </form>
 
             <% } else  { %>
                 <p id="favConfirm" class="center">You're following this train!</p>
             <% } %>
+
         <% } %>
 
         <p id="favConfirm" class="center"></p>
         <div id="updateForm"></div>
-
-        <% comments.reverse().forEach((comment) => { %>
-
-
-            <div id="commentList" class="comment_list" style="width: 700px; border:5px solid black">
-                 <div>
-                    <span class="time"><%= comment.createdAt %></span>
-                    <p>
-                        <%= comment.comment %>
-                    </p>
-                  <div class="user_name"><%= comment.firstName %></div> <br />
-                  <span class="likes">Likes : <%= comment.likes %></span>
-                  <span class="dislike">Dislikes: <%= comment.dislikes%></span>
-
-                  <% if (user.firstName ===  comment.firstName) { %>
-
-                      <span onclick="editForm('<%= trains.id %>', '<%= comment.id %>', '<%= comment.comment %>');" class="edit">&#x270e;</span>
-
-                      <form  onsubmit="javascript:
-                            if('<%= user.firstName %>' !== '<%= comment.firstName %>') {
-                                event.preventDefault();
-                                document.getElementById('notUser').innerHTML='Not cool, that\'s not your comment!';
-                              }"
-                        action="<%= '/user/' + trains.id + '/comment/' + comment.id + '/delete' + '?_method=DELETE' %>" method="POST">
-                          <input type="submit" value='X'/>
-
-                      </form>
-
-                  <% } %>
-
-                  <p id="notUser" class="center"></p>
-
-              </div>
-          </div>
-        <% }) %>
-
-
-    </div>
-
-        <button onclick="showComments()">Add comment</button>
-
-        <form id="addComment" class="hidden" action="/user/trains/<%= trains.id %>/comment" method="POST">
-            <input type="text" name="comment" />
-            <input type="submit" value="Post" />
-        </form>
-
         <p id="mustLogin" class="center"></p>
 
+        <ul class="collection comment_list">
+            <% comments.reverse().forEach((comment) => { %>
 
+                <li  id="listComm" class="collection-item avatar">
+                    <img src="/images/person2.png" alt="" class="circle">
+                    <span id="commmentPost" class="title"><%= comment.comment %></span>
+                    <p>Posted By : <span id="poster"><%= comment.firstName %></span> <br>
+                        @ <%= comment.createdAt %>
+                    </p>
+                    <% if (user.firstName ===  comment.firstName) { %>
+                        <div>
+                            <a id="pencil" onclick="editForm('<%= trains.id %>', '<%= comment.id %>', '<%= comment.comment %>')" class="secondary-content"><i class="material-icons">edit</i></a>
 
+                            <form id="trash" class="secondary-content" action="<%= '/user/' + trains.id + '/comment/' + comment.id + '/delete' + '?_method=DELETE' %>" method="POST">
+                                <input class="submitButton" type="submit" value='&#x2718;' />
+                            </form>
+                        </div>
+                    <% } %>
+                </li>
 
+            <% }) %>
+        </ul>
+          <div onclick="addCommentForm()" class="btn-floating btn-large waves-effect waves-light orange darken-3" id="showComButton"><i class="material-icons">add</i></div>
+    </div>
 
       <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -102,19 +63,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
         <script>
-            function showComments () {
-                if('<%= user %>' === 'not logged in') {
-                  // had to pass user different values, on both the index route and user route, to have button perform different functions.
-                    document.getElementById('mustLogin').innerHTML='Must be logged in to add comment';
-                } else if ('<%= user %>' !== 'not logged in') {
-                   document.getElementById('addComment').classList.toggle('show');
-                }
-            }
-            function printFav (event) {
-                // event.preventDefault();
-                document.getElementById('favConfirm').innerHTML='Added to favorites';
-                document.getElementById('favForm').classList.add('hidden');
-            }
             function editForm (trainsId, id, comment) {
               console.log(comment)
                 const updateForm = document.getElementById('updateForm');
@@ -124,23 +72,54 @@
                 input.setAttribute('type', 'text');
                 input.setAttribute('value', comment);
                 input.setAttribute('name', 'comment');
+                input.setAttribute('class', 'joinCenterGroup');
                 const submit = document.createElement('input');
                 const cancel = document.createElement('button');
                 cancel.innerHTML='Cancel';
                 submit.setAttribute('type', 'submit');
+                submit.setAttribute('class', 'submitButton');
+                submit.setAttribute('id', 'saveButton');
+                cancel.setAttribute('class', 'submitButton');
+                cancel.setAttribute('id', 'cancelButton');
                 submit.setAttribute('value', 'Save');
                 form.setAttribute('action', `/user/${trainsId}/comment/${id}/edit?_method=PUT`);
                 form.setAttribute('method', "POST");
                 form.appendChild(input);
-                form.appendChild(submit);
                 form.appendChild(cancel);
+                form.appendChild(submit);
                 updateForm.appendChild(form);
                 let comments = document.getElementsByClassName('comment_list');
                 for (let comment of comments) {
                   comment.classList.add('hidden');
                 }
-
             }
+            function addCommentForm () {
+               if ('<%= user %>' !== 'not logged in') {
+                const updateForm = document.getElementById('updateForm');
+                const form = document.createElement('form');
+                form.setAttribute('id', 'addCommentForm');
+                const input = document.createElement('input');
+                input.setAttribute('type', 'text');
+                input.setAttribute('name', 'comment');
+                input.setAttribute('class', 'joinCenterGroup');
+                const submit = document.createElement('input');
+                submit.setAttribute('type', 'submit');
+                submit.setAttribute('class', 'submitButton');
+                submit.setAttribute('id', 'postButton');
+                submit.setAttribute('value', 'Post');
+                form.setAttribute('action', '/user/trains/<%= trains.id %>/comment');
+                form.setAttribute('method', "POST");
+                form.appendChild(input);
+                form.appendChild(submit);
+                updateForm.appendChild(form);
+                let comments = document.getElementsByClassName('comment_list');
+                for (let comment of comments) {
+                  comment.classList.add('hidden');
+                }
+              } else if ('<%= user %>' === 'not logged in') {
+              document.getElementById('mustLogin').innerHTML='Must be logged in to add comment';
+            }
+          }
             function hideEditForm (event) {
                 event.preventDefault();
                 document.getElementById('editComment').classList.remove('show');
@@ -155,10 +134,6 @@
                 const form = document.getElementById('removeEditForm');
                 updateForm.removeChild(button);
             }
-
-
-
-
         </script>
 
   </body>
