@@ -8,17 +8,12 @@ iframe {
   width: 100%;
   height: 100%; }
 
-@keyframes drop {
-  from {
-    margin-top: -100px; }
-  to {
-    margin-top: 22px; } }
-
 .h3DropDown {
   z-index: -1;
   color: white;
   font-family: 'Syncopate', sans-serif;
-  animation: 1.2s drop ease-in-out;
+  animation: 2s fade ease-in-out;
+  margin-top: 50px;
   position: relative; }
 
 @keyframes fade {
@@ -28,7 +23,7 @@ iframe {
     opacity: 1; } }
 
 .buttonGroup {
-  margin-top: 100px;
+  padding-top: 1rem;
   animation: 2s fade ease-in-out; }
 
 h2 {
@@ -36,7 +31,8 @@ h2 {
   font-family: 'Syncopate', sans-serif; }
 
 h1 {
-  font-size: 100px;
+  padding-top: 75px;
+  font-size: 5rem;
   color: white;
   /*font-family: 'Questrial', sans-serif;*/
   font-family: 'Syncopate', sans-serif;
@@ -55,15 +51,13 @@ blockquote {
   font-family: 'Syncopate', sans-serif;
   font-size: 30px;
   font-color: white;
-  margin-top: 150px; }
+  margin-top: 50px; }
 
 .buttonLandingPage:hover {
   background-color: yellow; }
 
-.container {
-  position: absolute;
-  top: 100px;
-  left: 200px; }
+.colSeperation {
+  margin-top: 200px; }
 
 .remove {
   border: none; }
@@ -98,10 +92,10 @@ blockquote {
   display: block; }
 
 #bigTrainCircle {
-  width: 300px;
-  height: 300px;
-  font-size: 300px;
-  padding-top: 125px;
+  width: 250px;
+  height: 250px;
+  font-size: 250px;
+  padding-top: 100px;
   padding-left: 10px;
   box-shadow: inset 2px 2px 16px black; }
 
@@ -128,10 +122,10 @@ blockquote {
   color: gray;
   border: none;
   border-top: 1px solid #e0e0e0;
-  padding-top: 30px;
-  padding-bottom: 30px; }
+  padding-top: 40px;
+  padding-bottom: 40px; }
 
-.collection {
+.comment_list {
   margin: .5rem 0 1rem 0;
   border: 0px solid #e0e0e0;
   border-radius: 2px;
@@ -143,20 +137,17 @@ a:hover {
   cursor: pointer; }
 
 #pencil {
-  margin-right: 35px;
+  margin-right: 15px;
   font-size: 30px; }
 
 .secondary-content {
-  float: right;
   color: gray;
-  font-size: 40px; }
+  margin-right: -15px;
+  margin-top: -5px; }
 
 #saveButton, #postButton {
   color: #26a69a;
   line-height: inherit; }
-
-.title {
-  font-size: 20px; }
 
 #commmentPost {
   font-size: 15px;
@@ -171,6 +162,12 @@ a:hover {
   right: 4vw;
   bottom: 4vw; }
 
+@media screen and (max-width: 1032px) {
+  #showComButton {
+    position: static;
+    margin-left: 39vw;
+    margin-bottom: 5vw; } }
+
 .lineName {
   font-size: 20px;
   font-family: 'Syncopate', sans-serif; }
@@ -181,7 +178,7 @@ input[type=text], input[type=password], input[type=email] {
   letter-spacing: 4px;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: lighter;
-  color: rgba(170, 194, 192, 0.4); }
+  color: rgba(170, 194, 192, 0.5); }
 
 #favForm {
   text-align: center; }
@@ -195,5 +192,19 @@ input[type=text], input[type=password], input[type=email] {
 
 #mustLogin {
   color: red; }
+
+.bigCirc {
+  padding-top: 3rem;
+  padding-bottom: 1rem; }
+
+#nycCommute {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(170, 194, 192, 0.5);
+  letter-spacing: 4px; }
+
+h3, h4 {
+  font-family: 'Syncopate', sans-serif; }
 
 /*# sourceMappingURL=style.css.map */

@@ -5,7 +5,7 @@
 <% include partials/nav.ejs %>
 
     <div class="container">
-        <div class="section center-align">
+        <div class="section center-align bigCirc">
         <!-- <h1 class="center-align"><%= trains.line %> Train</h1> -->
             <div class="row">
                 <a class="btn-floating btn-large waves-effect waves-light <%= trains.color %>" id="bigTrainCircle"><%= trains.line %><i class="material-icons"></i></a>
@@ -28,17 +28,18 @@
         <% } %>
 
         <p id="favConfirm" class="center"></p>
+        <p id="nycCommute" class="center">NYC, how's that commute?...</p>
         <div id="updateForm"></div>
         <p id="mustLogin" class="center"></p>
 
         <ul class="collection comment_list">
-            <% comments.reverse().forEach((comment) => { %>
+            <% comments.forEach((comment) => { %>
 
                 <li  id="listComm" class="collection-item avatar">
                     <img src="/images/person2.png" alt="" class="circle">
                     <span id="commmentPost" class="title"><%= comment.comment %></span>
                     <p>Posted By : <span id="poster"><%= comment.firstName %></span> <br>
-                        @ <%= comment.createdAt %>
+                         <%= moment(comment.updatedAt).fromNow()%>
                     </p>
                     <% if (user.firstName ===  comment.firstName) { %>
                         <div>
@@ -112,6 +113,7 @@
                 form.appendChild(input);
                 form.appendChild(submit);
                 updateForm.appendChild(form);
+                document.getElementById('showComButton').classList.add('hidden');
                 let comments = document.getElementsByClassName('comment_list');
                 for (let comment of comments) {
                   comment.classList.add('hidden');
