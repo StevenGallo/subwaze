@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../db/models/index');
+var moment = require('moment');
 /* GET home page. */
 
 
@@ -66,6 +67,11 @@ module.exports = {
     fetchFavs,
     userRedirect,
     fetchFavsArray,
+<<<<<<< HEAD
     indexRedirect,
     trainRedirect
 }
+=======
+    indexRedirect
+}
+>>>>>>> moment capture added
