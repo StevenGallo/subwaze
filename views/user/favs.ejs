@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
 <% include ../partials/head.ejs %>
-
-</head>
 <body>
 <% include ../partials/nav.ejs %>
-
-
 <div class="center-align">
 <h2> Hello, <%= user.firstName %> </h2>
 <% favs.forEach((fav) => { %>
@@ -18,15 +13,7 @@
 <a href="/trains" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">search</i></a>
 </div>
 
-
-
-
-
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+<% include ../partials/scripts.ejs %>
 <script>
 function remove(){
 $('h2').html('Select a Line to remove from favorites list')
