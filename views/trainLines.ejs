@@ -1,83 +1,84 @@
 <!DOCTYPE html>
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-</head>
+<% include partials/head.ejs %>
   <body>
-
-    <div class="container">
+  <% include partials/nav.ejs %>
+<div class="container">
+<h3 class=" h3DropDown center-align">Select a Train Line</h1>
+</div>
+    <div class="container buttonGroup">
       <div class="section center-align">
-      <h1 class="center-align">Select a Train Line</h1>
+      <!-- <h3 class=" h3DropDown center-align">Select a Train Line</h1> -->
         <div class="row">
-          <a href="/trains/<%= trains[0].id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons"><%= trains[0].line %></i></a>
-          <a href="/trains/<%= trains[1].id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons"><%= trains[1].line %></i></a>
-          <a href="/trains/<%= trains[2].id %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons"><%= trains[2].line %></i></a>
+          <a href="/trains/<%= trains[0].id %>" class="btn-floating btn-large waves-effect waves-light red lineName">1<i class="material-icons"><%= trains[0].line %></i></a>
+          <a href="/trains/<%= trains[1].id %>" class="btn-floating btn-large waves-effect waves-light red lineName">2<i class="material-icons"><%= trains[1].line %></i></a>
+          <a href="/trains/<%= trains[2].id %>" class="btn-floating btn-large waves-effect waves-light red lineName">3<i class="material-icons"><%= trains[2].line %></i></a>
          </div>
         </div>
 
       <div class="center-align">
         <div class="row">
-          <a href="/trains/<%= trains[3].id %>"class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons"><%= trains[3].line %></i></a>
-          <a href="/trains/<%= trains[4].id %>"class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons"><%= trains[4].line %></i></a>
-          <a href="/trains/<%= trains[5].id %>"class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons"><%= trains[5].line %></i></a>
+          <a href="/trains/<%= trains[3].id %>" class="btn-floating btn-large waves-effect waves-light green lineName">4<i class="material-icons"><%= trains[3].line %></i></a>
+          <a href="/trains/<%= trains[4].id %>" class="btn-floating btn-large waves-effect waves-light green lineName">5<i class="material-icons"><%= trains[4].line %></i></a>
+          <a href="/trains/<%= trains[5].id %>" class="btn-floating btn-large waves-effect waves-light green lineName">6<i class="material-icons"><%= trains[5].line %></i></a>
         </div>
       </div>
 
       <div class="center-align">
         <div class="row">
-          <a href="/trains/<%= trains[6].id %>"class="btn-floating btn-large waves-effect waves-light purple"><i class="material-icons"><%= trains[6].line %></i></a>
-        </div>
-      </div>
-
-
-      <div class="center-align">
-        <div class="row">
-          <a href="/trains/<%= trains[7].id %>"class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons"><%= trains[7].line %></i></a>
-          <a href="/trains/<%= trains[8].id %>"class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons"><%= trains[8].line %></i></a>
-          <a href="/trains/<%= trains[9].id %>"class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons"><%= trains[9].line %></i></a>
+          <a href="/trains/<%= trains[6].id %>" class="btn-floating btn-large waves-effect waves-light purple lineName">7<i class="material-icons"><%= trains[6].line %></i></a>
         </div>
       </div>
 
 
       <div class="center-align">
         <div class="row">
-          <a href="/trains/<%= trains[10].id %>"class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons"><%= trains[10].line %></i></a>
-          <a href="/trains/<%= trains[11].id %>"class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons"><%= trains[11].line %></i></a>
-          <a href="/trains/<%= trains[12].id %>"class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons"><%= trains[12].line %></i></a>
-          <a href="/trains/<%= trains[13].id %>"class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons"><%= trains[13].line %></i></a>
+          <a href="/trains/<%= trains[7].id %>" class="btn-floating btn-large waves-effect waves-light blue lineName">A<i class="material-icons"><%= trains[7].line %></i></a>
+          <a href="/trains/<%= trains[8].id %>" class="btn-floating btn-large waves-effect waves-light blue lineName">C<i class="material-icons"><%= trains[8].line %></i></a>
+          <a href="/trains/<%= trains[9].id %>" class="btn-floating btn-large waves-effect waves-light blue lineName">E<i class="material-icons"><%= trains[9].line %></i></a>
+        </div>
+      </div>
+
+
+      <div class="center-align">
+        <div class="row">
+          <a href="/trains/<%= trains[10].id %>" class="btn-floating btn-large waves-effect waves-light orange lineName">B<i class="material-icons"><%= trains[10].line %></i></a>
+          <a href="/trains/<%= trains[11].id %>" class="btn-floating btn-large waves-effect waves-light orange lineName">D<i class="material-icons"><%= trains[11].line %></i></a>
+          <a href="/trains/<%= trains[12].id %>" class="btn-floating btn-large waves-effect waves-light orange lineName">F<i class="material-icons"><%= trains[12].line %></i></a>
+          <a href="/trains/<%= trains[13].id %>" class="btn-floating btn-large waves-effect waves-light orange lineName">M<i class="material-icons"><%= trains[13].line %></i></a>
         </div>
       </div>
 
       <div class="center-align">
         <div class="row">
-          <a href="/trains/<%= trains[14].id %>"class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons"><%= trains[14].line %></i></a>
+          <a href="/trains/<%= trains[14].id %>" class="btn-floating btn-large waves-effect waves-light green lineName">G<i class="material-icons"><%= trains[14].line %></i></a>
         </div>
       </div>
 
       <div class="center-align">
         <div class="row">
-          <a href="/trains/<%= trains[15].id %>"class="btn-floating btn-large waves-effect waves-light brown"><i class="material-icons"><%= trains[15].line %></i></a>
-          <a href="/trains/<%= trains[16].id %>"class="btn-floating btn-large waves-effect waves-light brown"><i class="material-icons"><%= trains[16].line %></i></a>
+          <a href="/trains/<%= trains[15].id %>" class="btn-floating btn-large waves-effect waves-light brown lineName">J<i class="material-icons"><%= trains[15].line %></i></a>
+          <a href="/trains/<%= trains[16].id %>" class="btn-floating btn-large waves-effect waves-light brown lineName">Z<i class="material-icons"><%= trains[16].line %></i></a>
         </div>
       </div>
 
       <div class="center-align">
         <div class="row">
-          <a href="/trains/<%= trains[17].id %>"class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons"><%= trains[17].line %></i></a>
+          <a href="/trains/<%= trains[17].id %>"  class="btn-floating btn-large waves-effect waves-light grey lineName">L<i class="material-icons"><%= trains[17].line %></i></a>
         </div>
       </div>
 
       <div class="center-align">
         <div class="row">
-          <a href="/trains/<%= trains[18].id %>"class="btn-floating btn-large waves-effect waves-light yellow"><i class="material-icons"><%= trains[18].line %></i></a>
-          <a href="/trains/<%= trains[19].id %>"class="btn-floating btn-large waves-effect waves-light yellow"><i class="material-icons"><%= trains[19].line %></i></a>
-          <a href="/trains/<%= trains[20].id %>"class="btn-floating btn-large waves-effect waves-light yellow"><i class="material-icons"><%= trains[20].line %></i></a>
-          <a href="/trains/<%= trains[21].id %>"class="btn-floating btn-large waves-effect waves-light yellow"><i class="material-icons"><%= trains[21].line %></i></a>
+          <a href="/trains/<%= trains[18].id %>" class="btn-floating btn-large waves-effect waves-light yellow lineName">Q<i class="material-icons"><%= trains[18].line %></i></a>
+          <a href="/trains/<%= trains[19].id %>" class="btn-floating btn-large waves-effect waves-light yellow lineName">N<i class="material-icons"><%= trains[19].line %></i></a>
+          <a href="/trains/<%= trains[20].id %>" class="btn-floating btn-large waves-effect waves-light yellow lineName">R<i class="material-icons"><%= trains[20].line %></i></a>
+          <a href="/trains/<%= trains[21].id %>" class="btn-floating btn-large waves-effect waves-light yellow lineName">W<i class="material-icons"><%= trains[21].line %></i></a>
         </div>
       </div>
 
       <div class="center-align">
         <div class="row">
-          <a href="/trains/<%= trains[22].id %>"class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons"><%= trains[22].line %></i></a>
+          <a href="/trains/<%= trains[22].id %>" class="btn-floating btn-large waves-effect waves-light grey lineName">S<i class="material-icons"><%= trains[22].line %></i></a>
         </div>
       </div>
 

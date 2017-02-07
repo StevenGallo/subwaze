@@ -2,11 +2,33 @@ body {
   background-color: black;
   color:white;
 }
-video {
-  opacity: .90;
+iframe {
+
+  opacity: .40;
   margin: 0;
   width:100%;
   height: 100%;
+}
+@keyframes drop {
+  from {margin-top: -100px;}
+  to{margin-top:22px;}
+}
+
+.h3DropDown {
+  z-index: -1;
+  color: white;
+  font-family: 'Syncopate', sans-serif;
+  animation: 1.2s drop ease-in-out;
+  position: relative;
+}
+ @keyframes fade {
+  from{opacity:0;}
+  to{opacity:1;}
+ }
+
+.buttonGroup {
+  margin-top: 100px;
+  animation: 2s fade ease-in-out ;
 }
 
 h2 {
@@ -22,6 +44,10 @@ font-family: 'Syncopate', sans-serif;
 /*font-family: 'Michroma', sans-serif;*/
 }
 
+.aText {
+  color: #e65100;
+
+}
 blockquote {
   font-size: 20px;
   color: white;
@@ -163,6 +189,12 @@ a:hover {
   bottom: 4vw;
 
 }
+
+.lineName {
+  font-size: 20px;
+  font-family: 'Syncopate', sans-serif;
+}
+
 input[type=text], input[type=password], input[type=email] {
   text-align: center;
   font-size: 1.5em;
