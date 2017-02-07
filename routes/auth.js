@@ -5,7 +5,9 @@ const authHelpers = require('../auth/auth-helpers');
 const passport = require('../auth/local');
 
 router.get('/register', authHelpers.loginRedirect, (req, res) => {
-    res.render('auth/register');
+    res.render('auth/register', {
+        title: 'subwaze register'
+    });
 });
 
 router.post('/register', (req, res, next) => {
@@ -13,7 +15,6 @@ router.post('/register', (req, res, next) => {
         .then((user) => {
             req.login(user, (err) => {
                 if (err) return next(err);
-
                 res.redirect('/user/');
             });
         })
@@ -21,7 +22,9 @@ router.post('/register', (req, res, next) => {
 });
 
 router.get('/login', authHelpers.loginRedirect, (req, res) => {
-    res.render('auth/login');
+    res.render('auth/login', {
+        title: 'subwaze login'
+    });
 });
 
 router.post('/login', passport.authenticate('local', {

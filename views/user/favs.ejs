@@ -3,28 +3,39 @@
 <% include ../partials/head.ejs %>
 <body>
 <% include ../partials/nav.ejs %>
-<div class="center-align">
-<h2> Hello, <%= user.firstName %> </h2>
-<% favs.forEach((fav) => { %>
-    <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light col s3 <%= fav.color %>"><%= fav.line %><i class="material-icons"></i></a>
-<% }) %>
-<button id="remove" onclick="remove()" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">delete</i></button>
-
-<a href="/trains" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">search</i></a>
+<div class="row">
+  <div class="center-align">
+   <div class=" col s12">
+     <h3 class="h3DropDown"> Hello, <%= user.firstName %> </h3>
+   </div>
+  </div>
 </div>
-
+<div class="center-align buttonGroup">
+  <% favs.forEach((fav) => { %>
+    <a href="/trains/<%= fav.id %>" id="<%= fav.id %>" class="btn-floating btn-large waves-effect waves-light col s3 <%= fav.color %>"><%= fav.line %><i class="material-icons"></i></a>
+  <% }) %>
+  </div>
+</div>
+<div class="row">
+<div class="center-align buttonGroup">
+  <div id="cancel" class=" col s12">
+    <button onclick="remove()" class="remove btn-floating btn-large waves-effect waves-light"><i class="material-icons">delete</i></button>
+    <a href="/trains" class="remove btn-floating btn-large waves-effect waves-light green"><i class="material-icons">search</i></a>
+    </div>
+  </div>
+  </div>
 <% include ../partials/scripts.ejs %>
 <script>
 function remove(){
-$('h2').html('Select a Line to remove from favorites list')
-$('#remove').remove();
+$('.remove').remove();
 $('a').each(function(){
     $(this).wrap('<form id ="'+(this.id)+'fav" action="/user/delete/'+(this.id)+'?_method=DELETE" method="POST"></form>');
     //change href to perform javascript instead of referencing route created http://stackoverflow.com/questions/4674625/
     this.href='javascript:submitForm("'+this.id+'fav");'
     $('form').css('display', 'inline')
-
 })
+$('#cancel').append('<a id="cancelButton" href="/user" class="remove btn-floating btn-large waves-effect waves-light red"><i class="material-icons">cancel</i></a>')
+$('#cancelButton').after('<h4>Select a Line to remove from favorites list</h4>')
 }
 function submitForm(trainID){
     $('#'+trainID+'').submit()

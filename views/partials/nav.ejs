@@ -9,7 +9,9 @@
     <% if (user !== 'not logged in') { %>
         <li class="li-nav"><a href="/user/">Profile</a></li>
     <% } %>
+     <% if (!onTrains) { %>
      <li class="li-nav"><a href="/trains">View All Trains</a></li>
+    <% } %>
     <% if (user !== 'not logged in') { %>
      <li class="li-nav"><a href="/user/logout">Logout</a></li>
     <% } %>
@@ -24,7 +26,9 @@
     <% if (user !== 'not logged in') { %>
       <li class="li-nav"><a href="/user/">Profile</a></li>
     <% } %>
+    <% if (!onTrains) { %>
      <li class="li-nav"><a href="/trains">View All Trains</a></li>
+    <% } %>
     <% if (user !== 'not logged in') { %>
      <li class="li-nav"><a href="/user/logout">Logout</a></li>
     <% } %>
