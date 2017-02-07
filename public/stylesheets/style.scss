@@ -3,7 +3,6 @@ body {
   color:white;
 }
 iframe {
-
   opacity: .40;
   margin: 0;
   width:100%;
@@ -37,7 +36,8 @@ h2 {
 }
 
 h1{
-  font-size: 100px;
+  padding-top: 75px;
+  font-size: 5rem;
   color: white;
   /*font-family: 'Questrial', sans-serif;*/
 font-family: 'Syncopate', sans-serif;
@@ -59,7 +59,7 @@ blockquote {
   font-family: 'Syncopate', sans-serif;
   font-size: 30px;
   font-color: white;
-  margin-top: 150px;
+  margin-top: 50px;
 
 }
 
@@ -67,7 +67,12 @@ blockquote {
   background-color: yellow;
 }
 
-.container{
+.colSeperation {
+  margin-top:200px;
+
+}
+
+.container2{
   position: absolute;
   top: 100px;
   left: 200px;
