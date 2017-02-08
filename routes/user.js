@@ -7,7 +7,9 @@ var helperware = require('./helperware');
 router.get('/', helperware.indexRedirect, helperware.fetchFavs, function(req, res, next) {
     res.render('user/favs', {
         user: req.user.dataValues,
-        favs: res.locals.favs
+        favs: res.locals.favs,
+        onTrains: false,
+        title: 'subwaze profile'
     });
     console.log(favs)
 });
@@ -17,7 +19,9 @@ router.get('/trains', function(req, res, next) {
         res.render('trainLines', {
             title: 'Select A Train',
             trains: trains,
-            user: req.user.dataValues
+            user: req.user.dataValues,
+            onTrains: true,
+            title: 'subwaze trains'
         });
     })
 });
@@ -29,7 +33,9 @@ router.get('/trains/:id', helperware.indexRedirect, helperware.fetchComments, he
             trains: trains,
             comments: res.locals.comments,
             user: req.user.dataValues,
-            favsArr: res.locals.favsArray
+            favsArr: res.locals.favsArray,
+            onTrains: false,
+            title: 'subwaze trains'
         });
     })
 });
@@ -38,7 +44,7 @@ router.post('/trains/:id/comment', function(req, res, next) {
     models.Comment.create({
         user_id: req.user.dataValues.id,
         train_id: req.params.id,
-        comment: req.body.comment
+        comment: req.body.comment,
     }).then(function() {
         res.redirect(`/trains/${req.params.id}`)
     });
