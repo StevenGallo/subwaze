@@ -48,7 +48,10 @@ Using an Agile development process, Team RUN D.E.V. worked collaboratively as we
 
 ### Challenges
 
-The data structure was an evolving process and involved learning how to access deeply nested objects, arrays, an individually specific items. This was a big win in understanding how to structure an application from a data access perspective. Also, using React exposed weaknesses in my understanding of certain parts, particulary planning components with what they may require with repect to state, and how to add seperate fucntionality to child components.
+Conditional rendering was one of the biggest challenges. We wanted our app to be 'uasble' for both logged in users and non-logged in users.
+So we ended up creating different routes to the same page, passing in different information. We also wanted certain elements to be rendered, or not rendered, based on
+status of the user, having favorites, and only being able to edit or delete their own comments, etc. Navagating EJS was another challenge.
+We we're brand new to using EJS as a view engine. Got off to a rocky start but ended up finding it very helpful with our conditional rendering. And GIT, ohhh git, how I both love, and hate you're marvelous face! Merging our branches was definitely one of our biggest challenges. We often found ourselves editing the same files, and ended up running into alot of merge conflicts. Deploying also to Heroku proved itself to be harder than we thought.
 
 ![data-structure view](https://cloud.githubusercontent.com/assets/7386478/22714647/808836f8-ed5b-11e6-83a6-07a0b3ebf3f7.png)
 
