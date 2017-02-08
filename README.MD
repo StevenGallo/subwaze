@@ -68,9 +68,9 @@ The entity relationship diagram describes the different relationship types our t
     git locally
     GitHub remotely
 
-### Challenges
-
 ![data-structure view](https://cloud.githubusercontent.com/assets/7386478/22714647/808836f8-ed5b-11e6-83a6-07a0b3ebf3f7.png)
+
+### Challenges
 
 This was a big win in understanding how to structure an application from a data access perspective. Conditional rendering was one of the biggest challenges. We wanted our app to be 'usable' for both logged in users and non-logged in users. We ended up creating different routes to the same page, passing in different information. We also wanted certain elements to be rendered, or not rendered, based on status of the user having favorites and/or only being able to edit or delete their own comments. Navigating EJS was another challenge. We we're brand new to using EJS as a view engine. Got off to a rocky start but ended up finding it very helpful with our conditional rendering. And GIT, ohhh git, how I both love, and hate you're marvelous face! Merging our branches was definitely one of our biggest challenges. We often found ourselves editing the same files, and ended up running into a lot of merge conflicts.
 
